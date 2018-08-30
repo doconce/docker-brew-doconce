@@ -9,6 +9,14 @@ ENV LANGUAGE en_US.UTF-8
 ENV SHELL /bin/bash
 
 WORKDIR /root
+
+RUN apt-get update && \
+    apt-get install -y ispell &&\
+    apt-get purge && \
+    apt-get clean && \
+    rm -rf /var/lib/lists/*
+
+
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
     /bin/bash ~/miniconda.sh -b -p /opt/conda && \
     rm ~/miniconda.sh && \
